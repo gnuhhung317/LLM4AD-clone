@@ -1,0 +1,4 @@
+name: VRPTWEvaluation2O
+timeout_seconds: 30
+problem_size: 50
+n_instance: 16
