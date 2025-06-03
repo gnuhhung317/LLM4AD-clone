@@ -28,7 +28,7 @@ from ...tools.profiler import ProfilerBase
 class MEoH:
     def __init__(self,
                  llm: LLM,
-                 evaluation: Evaluation,
+                 evaluation: Evaluation,#  phần cần chỉnh sửa để nhận được đánh giá 
                  profiler: ProfilerBase = None,
                  max_generations: int | None = 10,
                  max_sample_nums: int | None = 100,

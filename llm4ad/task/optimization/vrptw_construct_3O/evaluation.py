@@ -46,9 +46,9 @@ from .template import template_program, task_description
 
 class VRPTWEvaluation3O(Evaluation):
     def __init__(self,
-                 timeout_seconds=30,
-                 problem_size=50,
-                 n_instance=16,
+                 timeout_seconds=30,#time out để xã định thời gian đợi tối đa 
+                 problem_size=50,# số lượng khách hàng cần được phục vụ 
+                 n_instance=16,# số lượng test 
                  **kwargs):
 
         super().__init__(
@@ -79,7 +79,7 @@ class VRPTWEvaluation3O(Evaluation):
             arrival_time = current_time
             earliest_time = time_windows[solution[j + 1]][0]
             latest_time = time_windows[solution[j + 1]][1]
-
+            # nếu đến sớm cần ngồi đợi 
             # Calculate waiting time (if arrived too early)
             waiting_time = max(0, earliest_time - arrival_time)
             current_time = max(arrival_time, earliest_time)
@@ -89,6 +89,7 @@ class VRPTWEvaluation3O(Evaluation):
             
             # Add to totals
             total_distance += travel_time
+            # thời gian vi phạm tính cả thời gian chờ 
             total_violations += waiting_time + violation
 
             # Add service time
@@ -105,6 +106,7 @@ class VRPTWEvaluation3O(Evaluation):
 
     def solve_single_instance(self, heuristic, instance_data):
         """Solve a single instance and return the three objectives."""
+        # yêu cầu cả về tải trọng của xe , tại các điểm cần có thêm thời gian phục vụ 
         instance, distance_matrix, demands, vehicle_capacity, time_service, time_windows = instance_data
         
         # Start timing the algorithm execution

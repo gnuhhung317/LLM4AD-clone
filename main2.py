@@ -14,6 +14,7 @@ if __name__ == '__main__':
         llm=llm,
         evaluation=task,
         profiler=MEoHProfiler(
+            num_objs=3,
             log_dir='logs/meoh_vrptw_3obj',
             log_style='complex',
             evaluation_name='VRPTW-3Obj',

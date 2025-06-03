@@ -119,7 +119,7 @@ class EoH:
         self._tot_sample_nums = 0
 
         # reset _initial_sample_nums_max
-        self._initial_sample_nums_max = min(
+        self._initial_sample_nums_max = max(
             self._max_sample_nums,
             2 * self._pop_size
         )

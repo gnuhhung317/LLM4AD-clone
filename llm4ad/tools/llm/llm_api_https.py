@@ -29,7 +29,7 @@ from ...base import LLM
 
 class HttpsApi(LLM):
     def __init__(self, host="generativelanguage.googleapis.com", 
-                 key="AIzaSyAd7E2g9BS4dYM6H9cDn7plxe7CzOzQXNU", 
+                 key="AIzaSyBwn-b-RDi-zO4Tllf_3ychju2IWBd09LI", 
                  model="gemini-2.0-flash", 
                  timeout=60, **kwargs):
         """Https API
@@ -65,6 +65,7 @@ class HttpsApi(LLM):
                 res = conn.getresponse()
                 data = res.read().decode('utf-8')
                 data = json.loads(data)
+                # print(data)
                 response = data['candidates'][0]['content']['parts'][0]['text']
                 if self.debug_mode:
                     self._cumulative_error = 0

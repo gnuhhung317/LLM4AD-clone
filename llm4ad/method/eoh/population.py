@@ -38,10 +38,10 @@ class Population:
     @property
     def generation(self):
         return self._generation
-
+# config to only use violation to determine the survival
     def survival(self):
         pop = self._population + self._next_gen_pop
-        pop = sorted(pop, key=lambda f: f.score, reverse=True)
+        pop = sorted(pop, key=lambda f: f.score[1], reverse=True)
         self._population = pop[:self._pop_size]
         self._next_gen_pop = []
         self._generation += 1
@@ -76,10 +76,10 @@ class Population:
             if str(f) == str(func) or func.score == f.score:
                 return True
         return False
-
+# similar to the survival method only use violation criterion to determine the selection
     def selection(self) -> Function:
         funcs = [f for f in self._population if not math.isinf(f.score)]
-        func = sorted(funcs, key=lambda f: f.score, reverse=True)
+        func = sorted(funcs, key=lambda f: f.score[1], reverse=True)
         p = [1 / (r + len(func)) for r in range(len(func))]
         p = np.array(p)
         p = p / np.sum(p)
